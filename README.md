@@ -1,9 +1,10 @@
 # Nqobile-Msiza-CMPG-325-PROJECT Part 1
 
-Overview
+# Overview
+
 This report contains the design, implementation, and analysis of five network topologies which are: (Bus, Mesh, Star, Ring, and Extended Star) and one hybrid topology (bus topology) integrating elements from all basic types. Each topology was implemented with using IPv4/IPv6 addressing, VLAN segmentation, essential network services which were these two (HTTP, DNS), and basic security measures such as a password for each server was configured. The simulations illustrate the network device configurations, IP addressing and data packet transmission.
 
-1. Methodology & Tools
+# 1. Methodology & Tools
    
 1.1 Simulation Environment
 •	Primary Tool: Cisco Packet Tracer
@@ -13,7 +14,8 @@ o	5 Basic Topologies: Bus, Mesh, Star, Ring, Extended Star.
 o	Hybrid Topology: Bus topology serving as the backbone connecting all other topologies.
 -Network Devices: Switches only (no routers implemented).
 
-1.2 Consistent Addressing Scheme
+# 1.2 Consistent Addressing Scheme
+
 An integrated IP addressing plan was implemented across all topologies:
 IPv4 Scheme: 192.168.1.X (where X = different value for each PC)
 -Topology Assignments:
@@ -28,20 +30,23 @@ o	Extended Star: 192.168.1.X
 -Central Server: 2003:DB8:X: :/64(Located on Bus/Hybrid topology)
 -End Devices: 2003:DB8:X: :/64 - 2003:DB8:X: :/64
 
-1.3 Cable Implementation
+# 1.3 Cable Implementation
+
 •	Bus/Hybrid Topology: Coaxial cables with terminators (central backbone)
 •	Other Topologies:
 -Copper Straight-Through: PC to Switch connections
 -Copper Crossover: Switch to Switch connections
 -Connection to Bus: Each topology connected to the central bus backbone.
 
-1.4 Service Implementation
+# 1.4 Service Implementation
+
 Centralized Server Approach: A single server located on the Bus/Hybrid backbone provided services to all connected topologies:
 •	DNS Service: Centralized name resolution accessible from all topologies
 •	HTTP Service: Web hosting available network-wide
      -Server Location: Bus/Hybrid backbone (192.168.1.48)
 
-1.5 Basic Security Implementation
+# 1.5 Basic Security Implementation
+
 Manual Password Configuration: Every switch in all topologies was secured with individual password configuration:
 -Enable Secret Passwords: Configured for privileged EXEC mode access
 -Console Passwords: Set for physical console access security
@@ -50,7 +55,7 @@ Manual Password Configuration: Every switch in all topologies was secured with i
 
 
 
-# Network Configuration
+# IP ADDRESS TABLE
 
 | **Device** | **IPv4 Address** | **Subnet Mask** | **IPv6 Address** | **Gateway** |
 |-------------|------------------|------------------|------------------|-------------|
@@ -82,15 +87,17 @@ Manual Password Configuration: Every switch in all topologies was secured with i
 | PC33       | 192.168.1.26     | 255.255.255.0    | 2003:DB8:1::26/64 | 192.168.1.254 |
 | Server0    | 192.168.1.48     | 255.255.255.0    | *Not Configured*  | 192.168.1.254 |
 
-Configuration Notes:
-For VLAN segmentation:
+# Configuration Notes
+
+# For VLAN segmentation:
 >>enable
 >>configure terminal
 >>interface vlan1
 >>ip address 192.168.1.X 255.255.255.0
 >>no shutdown
 >>exit until conf is gone
-For basic security (on each switch under CLI):
+
+# For basic security (on each switch under CLI):
 Switch>enable
 Switch#configure terminal
 Switch(config)#enable password @123Nqobile
@@ -98,7 +105,8 @@ Switch(config)# exit
 
 # Nqobile-Msiza-CMPG-325-PROJECT Part 2
 
-Project Overview
+# Project Overview
+
 Successfully implemented and demonstrated Border Gateway Protocol (BGP) for inter-domain routing between two autonomous systems (AS 65001 and AS 65002) using a physical lab setup consisting of 4 PCs, 2 switches, and 2 routers.
 
 # IP Address Table
@@ -112,9 +120,9 @@ Successfully implemented and demonstrated Border Gateway Protocol (BGP) for inte
 | Router1 | 198.168.1.1 | — |
 | Router2 | 198.168.2.1 | — |
 
-Configuration Notes:
+# Configuration Notes:
 
-1. Basic Router Configuration
+# 1. Basic Router Configuration
 Router A (AS 65001)
 
 enable
@@ -160,7 +168,7 @@ interface loopback0
  ip address 2.2.2.2 255.255.255.255
  exit
 
- 2. BGP Configuration
+# 2. BGP Configuration
 Router A BGP Setup
 router bgp 65001
  bgp router-id 1.1.1.1
@@ -186,7 +194,7 @@ router bgp 65002
 ! Static route for network advertisement
 ip route 192.168.20.0 255.255.255.0 null0
 
-3. Switch Configuration
+# 3. Switch Configuration
 Switch A (for AS 65001)
 
 enable
@@ -228,7 +236,7 @@ interface gigabitethernet0/1
  no shutdown
  exit
 
- 4. Verification Commands
+ # 4. Verification Commands
 BGP Verification
 ! Check BGP neighbors
 show ip bgp summary
@@ -270,7 +278,7 @@ show ip route connected
 ! Check protocol status
 show ip protocols
 
-5. Troubleshooting Commands
+# 5. Troubleshooting Commands
 BGP Troubleshooting
 
 ! Debug BGP events (use cautiously)
